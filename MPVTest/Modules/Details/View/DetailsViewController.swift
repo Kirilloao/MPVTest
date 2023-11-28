@@ -36,7 +36,7 @@ final class DetailsViewController: UIViewController {
         )
         return button
     }()
-
+    
     // MARK: - Life Cycle MEthods
     override func viewDidLoad() {
         super.viewDidLoad()

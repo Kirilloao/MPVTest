@@ -13,6 +13,9 @@ protocol PersonViewProtocol: AnyObject {
 
 final class PersonViewController: UIViewController {
     
+    // MARK: - Presenter
+    var presenter: PersonPresenter!
+    
     // MARK: - Private UI Properties
     private lazy var mainStackView: UIStackView = {
         var stackView = UIStackView()
@@ -23,7 +26,7 @@ final class PersonViewController: UIViewController {
         stackView.spacing = 10
         return stackView
     }()
-
+    
     private lazy var nameLabel: UILabel = {
         var name = UILabel()
         return name
@@ -40,12 +43,13 @@ final class PersonViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemGray6
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(showDetailsVC), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(showDetailsVC),
+            for: .touchUpInside
+        )
         return button
     }()
-    
-    // MARK: - Presenter
-    var presenter: PersonPresenter!
     
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {

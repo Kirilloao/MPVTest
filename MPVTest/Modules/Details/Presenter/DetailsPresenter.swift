@@ -8,6 +8,7 @@
 import Foundation
 
 final class DetailsPresenter {
+    
     // MARK: - Public View
     weak var view: DetailsViewProtocol?
     
