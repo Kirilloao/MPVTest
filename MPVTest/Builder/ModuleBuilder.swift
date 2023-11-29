@@ -10,7 +10,7 @@ import UIKit
 // MARK: - Builder
 protocol Builder {
     static func createMainModule() -> UIViewController
-//    static func createDetailsModule() -> UIViewController
+    static func createDetailsModule(with details: Details) -> UIViewController
 }
 
 // MARK: - ModuleBuilder
@@ -22,12 +22,12 @@ final class ModuleBuilder: Builder {
         view.presenter = presenter
         return view
     }
-//    
-//    static func createDetailsModule() -> UIViewController {
-//        let details = Details(description: "")
-//        let view = DetailsViewController()
-//        let presenter = DetailsPresenter(view: view, details: details)
-//        view.presenter = presenter
-//        return view
-//    }
+    
+    static func createDetailsModule(with details: Details) -> UIViewController {
+        let details = details
+        let view = DetailsViewController()
+        let presenter = DetailsPresenter(view: view, details: details)
+        view.presenter = presenter
+        return view
+    }
 }
