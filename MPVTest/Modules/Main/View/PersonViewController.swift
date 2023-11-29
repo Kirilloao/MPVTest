@@ -70,7 +70,6 @@ final class PersonViewController: UIViewController {
     
     // MARK: - Private Methods
     private func setupPresenter() {
-        presenter = PersonPresenter(view: self, person: Person(name: "Alex", age: "55"))
         presenter.showPersonInfo()
     }
     
