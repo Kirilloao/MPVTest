@@ -14,7 +14,7 @@ protocol PersonViewProtocol: AnyObject {
 final class PersonViewController: UIViewController {
     
     // MARK: - Presenter
-    var presenter: PersonPresenter!
+    var presenter: PersonPresenterProtocol!
     
     // MARK: - Private UI Properties
     private lazy var mainStackView: UIStackView = {
