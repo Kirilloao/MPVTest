@@ -63,8 +63,7 @@ final class PersonViewController: UIViewController {
     @objc private func showDetailsVC() {
         let description = "Name: \(nameLabel.text ?? "") Age: \(ageLabel.text ?? "")"
         let details = Details(description: description)
-        let detailsVC = DetailsViewController()
-        detailsVC.presenter = DetailsPresenter(view: detailsVC, details: details)
+        let detailsVC = ModuleBuilder.createDetailsModule(with: details)
         present(detailsVC, animated: true)
     }
     
