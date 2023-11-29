@@ -7,12 +7,15 @@
 
 import Foundation
 
-final class DetailsPresenter {
-    
-    // MARK: - Public View
-    weak var view: DetailsViewProtocol?
+protocol DetailsPresenterProtocol: AnyObject {
+    init(view: DetailsViewProtocol, details: Details)
+    func loadDetails()
+}
+
+final class DetailsPresenter: DetailsPresenterProtocol {
     
     // MARK: - Private Properties
+    private unowned var view: DetailsViewProtocol
     private let details: Details
     
     // MARK: - Init
@@ -23,6 +26,6 @@ final class DetailsPresenter {
     
     // MARK: - Public Methods
     func loadDetails() {
-        view?.showDetails(details.description)
+        view.showDetails(details.description)
     }
 }

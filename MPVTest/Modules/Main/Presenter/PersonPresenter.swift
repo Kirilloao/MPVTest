@@ -7,36 +7,28 @@
 
 import Foundation
 
-/*
- PersonPresenter отвечает за всю логику представления связанную с объектом Person.
- */
-final class PersonPresenter {
-    /*
-     Свойство view является ссылкой на протокол PersonViewProtocol.
-     Weak указывает что это слабая ссылка что помогает предотварить утечки памяти.
-     PersonViewProtocol обновляет интерфейс.
-     */
-    weak var view: PersonViewProtocol?
-    /*
-     Свойство person представляет модель данных с которой работает презентен.
-     Приватное потому что оно доступно только внутри текущего класса.
-     */
+protocol PersonPresenterProtocol: AnyObject {
+    init(view: PersonViewProtocol, person: Person)
+    func showPersonInfo()
+}
+
+final class PersonPresenter: PersonPresenterProtocol {
+
+    // MARK: - Private Properties
+    private unowned let view: PersonViewProtocol
     private let person: Person
     
+    // MARK: - Init
     init(view: PersonViewProtocol, person: Person) {
         self.view = view
         self.person = person
     }
-    
-    /*
-     Определяем метод внутри которого извлекаем имя и возвраст из person.
-     */
+
+    // MARK: - Public Methods
     func showPersonInfo() {
         let name = person.name
         let age = person.age
-        /*
-         Метод displayPersonInfo используется для передачи информации о prson в view для отображения пользователю.
-         */
-        view?.displayPersonInfo(name: name, age: age)
+
+        view.displayPersonInfo(name: name, age: age)
     }
 }
