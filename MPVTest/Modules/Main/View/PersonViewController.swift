@@ -56,7 +56,7 @@ final class PersonViewController: UIViewController {
         super.viewDidLoad()
         setViews()
         setupConstraints()
-        setupPresenter()
+        presenter.showPersonInfo()
     }
     
     // MARK: - Private Actions
@@ -69,10 +69,6 @@ final class PersonViewController: UIViewController {
     }
     
     // MARK: - Private Methods
-    private func setupPresenter() {
-        presenter.showPersonInfo()
-    }
-    
     private func setViews() {
         view.backgroundColor = .white
         view.addSubview(mainStackView)
