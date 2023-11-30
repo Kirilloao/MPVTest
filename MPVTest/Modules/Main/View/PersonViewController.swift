@@ -14,7 +14,7 @@ protocol PersonViewProtocol: AnyObject {
 final class PersonViewController: UIViewController {
     
     // MARK: - Presenter
-    var presenter: PersonPresenter!
+    var presenter: PersonPresenterProtocol!
     
     // MARK: - Private UI Properties
     private lazy var mainStackView: UIStackView = {
@@ -56,24 +56,18 @@ final class PersonViewController: UIViewController {
         super.viewDidLoad()
         setViews()
         setupConstraints()
-        setupPresenter()
+        presenter.showPersonInfo()
     }
     
     // MARK: - Private Actions
     @objc private func showDetailsVC() {
         let description = "Name: \(nameLabel.text ?? "") Age: \(ageLabel.text ?? "")"
         let details = Details(description: description)
-        let detailsVC = DetailsViewController()
-        detailsVC.presenter = DetailsPresenter(view: detailsVC, details: details)
+        let detailsVC = ModuleBuilder.createDetailsModule(with: details)
         present(detailsVC, animated: true)
     }
     
     // MARK: - Private Methods
-    private func setupPresenter() {
-        presenter = PersonPresenter(view: self, person: Person(name: "Alex", age: "55"))
-        presenter.showPersonInfo()
-    }
-    
     private func setViews() {
         view.backgroundColor = .white
         view.addSubview(mainStackView)

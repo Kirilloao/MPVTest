@@ -14,7 +14,7 @@ protocol DetailsViewProtocol: AnyObject {
 final class DetailsViewController: UIViewController {
     
     // MARK: - Presenter
-    var presenter: DetailsPresenter!
+    var presenter: DetailsPresenterProtocol!
     
     // MARK: - Private UI Properties
     private lazy var descriptionLabel: UILabel = {
